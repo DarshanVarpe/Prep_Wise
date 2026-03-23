@@ -1,5 +1,6 @@
 "use server";
 
+import { revalidatePath } from "next/cache";
 import { generateObject } from "ai";
 import { google } from "@ai-sdk/google";
 
@@ -18,7 +19,7 @@ export async function createFeedback(params: CreateFeedbackParams) {
       .join("");
 
     const { object } = await generateObject({
-      model: google("gemini-2.0-flash-001", {
+      model: google("gemini-2.5-flash", {
         structuredOutputs: false,
       }),
       schema: feedbackSchema,
@@ -58,6 +59,9 @@ export async function createFeedback(params: CreateFeedbackParams) {
     }
 
     await feedbackRef.set(feedback);
+
+    revalidatePath("/");
+    revalidatePath(`/interview/${interviewId}`);
 
     return { success: true, feedbackId: feedbackRef.id };
   } catch (error) {

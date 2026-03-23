@@ -8,6 +8,15 @@ import { getRandomInterviewCover } from "@/lib/utils";
 export async function POST(request: Request) {
   const body = await request.json();
   
+  try {
+    await db.collection("debug").add({
+      timestamp: new Date().toISOString(),
+      payload: body
+    });
+  } catch (e) {
+    // Ignore debug failure
+  }
+
   let role = body.role;
   let type = body.type;
   let level = body.level;

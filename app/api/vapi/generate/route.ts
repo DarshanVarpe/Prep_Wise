@@ -5,7 +5,34 @@ import { db } from "@/firebase/admin";
 import { getRandomInterviewCover } from "@/lib/utils";
 
 export async function POST(request: Request) {
-  const { type, role, level, techstack, amount, userid } = await request.json();
+  const body = await request.json();
+  
+  let role = body.role;
+  let type = body.type;
+  let level = body.level;
+  let techstack = body.techstack;
+  let amount = body.amount;
+  let userid = body.userid;
+
+  try {
+    const toolCallList = body.message?.toolWithToolCallList || body.message?.toolCalls;
+    if (toolCallList && toolCallList.length > 0) {
+      const toolCall = toolCallList[0].toolCall || toolCallList[0];
+      let args = toolCall?.function?.arguments;
+      if (typeof args === "string") {
+        args = JSON.parse(args);
+      }
+      if (args) {
+        role = role || args.role;
+        type = type || args.type;
+        level = level || args.level;
+        techstack = techstack || args.techstack;
+        amount = amount || args.amount;
+      }
+    }
+  } catch (err) {
+    console.error("Parsing Vapi JSON failed:", err);
+  }
 
   try {
     const { text: questions } = await generateText({

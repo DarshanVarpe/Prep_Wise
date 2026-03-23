@@ -52,12 +52,17 @@ export async function POST(request: Request) {
     `,
     });
 
+    let cleanQuestions = questions;
+    if (questions.includes("```")) {
+      cleanQuestions = questions.replace(/```json/g, "").replace(/```/g, "").trim();
+    }
+
     const interview = {
       role: role,
       type: type,
       level: level,
       techstack: (techstack || "").split(","),
-      questions: JSON.parse(questions || "[]"),
+      questions: JSON.parse(cleanQuestions || "[]"),
       userId: userid,
       finalized: true,
       coverImage: getRandomInterviewCover(),

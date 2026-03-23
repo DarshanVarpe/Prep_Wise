@@ -1,5 +1,6 @@
 import { generateText } from "ai";
 import { google } from "@ai-sdk/google";
+import { revalidatePath } from "next/cache";
 
 import { db } from "@/firebase/admin";
 import { getRandomInterviewCover } from "@/lib/utils";

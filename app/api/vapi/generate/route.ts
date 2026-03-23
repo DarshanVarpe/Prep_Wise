@@ -71,6 +71,9 @@ export async function POST(request: Request) {
 
     await db.collection("interviews").add(interview);
 
+    // Revalidate the cache so the interview appears instantly on the home screen
+    revalidatePath("/");
+
     return Response.json({ success: true }, { status: 200 });
   } catch (error) {
     console.error("Error:", error);

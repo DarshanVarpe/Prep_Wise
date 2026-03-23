@@ -22,7 +22,10 @@ export async function POST(request: Request) {
   let level = body.level;
   let techstack = body.techstack;
   let amount = body.amount;
-  let userid = body.userid;
+  let userid = body.userid || 
+               body.message?.call?.assistantOverrides?.variableValues?.userid || 
+               body.message?.assistant?.variableValues?.userid || 
+               body.message?.call?.userid;
 
   try {
     const toolCallList = body.message?.toolWithToolCallList || body.message?.toolCalls;

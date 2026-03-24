@@ -111,16 +111,6 @@ export const interviewer: any = {
     provider: "openai",
     voiceId: "alloy",
   },
-  // Advanced Realism Enhancements
-  fillerInjectionEnabled: true,
-  backgroundDenoisingEnabled: true,
-  backchannelingEnabled: true,
-  stopSpeakingPlan: {
-    numWords: 1,
-    voiceSeconds: 0.2,
-    backoffSeconds: 2,
-    acknowledgementPhrases: ["right", "yeah", "okay", "mm-hmm", "I see", "interesting"],
-  },
   model: {
     provider: "openai",
     model: "gpt-4o-mini",

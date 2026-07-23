@@ -105,6 +105,13 @@ Follow these steps to set up the project locally.
 5. **Open the app:**
    Navigate to [http://localhost:3000](http://localhost:3000) in your browser.
 
+## 👨‍💻 About the Author
+
+This project is developed by **Darshan Varpe**, a passionate Software Engineer with a keen interest in Artificial Intelligence, Full-Stack Development, and building scalable systems. 
+- **Portfolio/Website:** [Darshan's Portfolio](#) *(replace with your link)*
+- **LinkedIn:** [Darshan Varpe](#) *(replace with your link)*
+- **GitHub:** [@DarshanVarpe](https://github.com/DarshanVarpe)
+
 ## 🤝 Contributing
 
 Contributions are welcome! If you'd like to improve the platform, feel free to fork the repository, create a new branch, and submit a pull request.
